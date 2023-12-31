@@ -11,10 +11,11 @@ public class Member {
     private int age;
     private Gender gender;
 
-    public Member(String name, int age, int year, int month, int day)
+    public Member(String name, int age, String gender)
     {
         this.setName(name);
         this.setAge(age);
+        this.setGender(gender);
     }
 
     public void setName(String name)
@@ -50,6 +51,9 @@ public class Member {
         } else if (gender.equalsIgnoreCase("female"))
         {
             this.gender = Gender.F;
+        } else {
+            System.err.print("Invalid Gender");
+            System.exit(1);
         }
     }
 
