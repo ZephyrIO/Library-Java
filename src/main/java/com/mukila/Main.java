@@ -2,7 +2,8 @@ package com.mukila;
 import java.util.LinkedList;
 import java.io.*;
 
-public class Main {
+public class Main
+{
     public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     public static void main(String[] args) {
         LinkedList<Member> memberList = new LinkedList<>();
@@ -36,8 +37,10 @@ public class Main {
                 itemList.add(addItem());
                 break;
                 case 3:
+                checkoutItem(itemList);
                 break;
                 case 4:
+                returnItem(itemList);
                 break;
                 case 5:
                 System.out.println("Goodbye...");
@@ -168,5 +171,65 @@ public class Main {
 
         System.out.println("Invalid Input: Input the letter \'b\', \'m\', or \'d\'");
         return null;
+    }
+
+    public static void checkoutItem(LinkedList<Item> itemList)
+    {
+        String input = null;
+        
+        try {
+            System.out.print("Name of item to checkout:\t");
+            input = br.readLine();
+            int size = itemList.size();
+            for (int  i = 0; i < size; i++)
+            {
+                if (itemList.get(i).getTitle().equalsIgnoreCase(input))
+                {
+                    if (itemList.get(i).getOwner() == null)
+                    {
+                        System.out.print("Name of member checking out:\t");
+                        input = br.readLine();
+                        itemList.get(i).setOwner(input);
+                        System.out.println("Item has been checked out.");
+                    } else {
+                        System.out.println("This item is already checked out.");
+                    }
+
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            System.err.print(e);
+            System.exit(1);
+        }
+    }
+
+    public static void returnItem(LinkedList<Item> itemList)
+    {
+        String input = null;
+        
+        try {
+            System.out.print("Name of item to return:\t");
+            input = br.readLine();
+            int size = itemList.size();
+            for (int  i = 0; i < size; i++)
+            {
+                if (itemList.get(i).getTitle().equalsIgnoreCase(input))
+                {
+                    if (itemList.get(i).getOwner() != null)
+                    {
+                        itemList.get(i).setOwner(null);
+                        System.out.println("Item has been returned.");
+                    } else {
+                        System.out.println("This item is not checked out.");
+                    }
+
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            System.err.print(e);
+            System.exit(1);
+        }
     }
 }
