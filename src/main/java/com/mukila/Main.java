@@ -25,7 +25,8 @@ public class Main
          * 2 add item
          * 3 checkout item
          * 4 return item
-         * 5 quit
+         * 5 TODO
+         * 6 quit
          */
         while (true) {
             int input = printMenu();
@@ -43,6 +44,8 @@ public class Main
                 returnItem(itemList);
                 break;
                 case 5:
+                break;
+                case 6:
                 System.out.println("Goodbye...");
                 try {
                     br.close();
@@ -53,7 +56,7 @@ public class Main
                 System.exit(0);
                 break;
                 default:
-                System.out.println("Invalid Input: Input an integer from 1 to 5.");
+                System.out.println("Invalid Input: Input an integer from 1 to 6.");
                 break;
             }
         }
