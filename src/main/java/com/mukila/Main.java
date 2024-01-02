@@ -46,14 +46,7 @@ public class Main
                 case 5:
                 break;
                 case 6:
-                System.out.println("Goodbye...");
-                try {
-                    br.close();
-                } catch (Exception e) {
-                    System.err.print(e);
-                    System.exit(1);
-                }
-                System.exit(0);
+                quit(memberList, itemList);
                 break;
                 default:
                 System.out.println("Invalid Input: Input an integer from 1 to 6.");
@@ -68,7 +61,8 @@ public class Main
         System.out.println("2: Add Item");
         System.out.println("3: Checkout Item");
         System.out.println("4: Return Item");
-        System.out.println("5: Quit");
+        System.out.println("5: null");
+        System.out.println("6: Quit");
         int input = -1;
         System.out.print("Select an option:\t");
         try
@@ -234,5 +228,45 @@ public class Main
             System.err.print(e);
             System.exit(1);
         }
+    }
+
+    public static void quit(LinkedList<Member> memberList, LinkedList<Item> itemList)
+    {
+        try {
+            FileWriter mem = new FileWriter("Members.txt");
+            for (int i = 0; i < memberList.size(); i++)
+            {
+                mem.write(memberList.get(i).getName());
+                mem.write("\n");
+                mem.write(memberList.get(i).getAge());
+                mem.write("\n");
+                mem.write(memberList.get(i).getGender());
+                mem.write("\n");
+            }
+            mem.close();
+
+            FileWriter itm = new FileWriter("Items.txt");
+            for (int i = 0; i < itemList.size(); i++)
+            {
+                itm.write(itemList.get(i).getType());
+                itm.write("\n");
+                itm.write(itemList.get(i).getTitle());
+                itm.write("\n");
+                itm.write(itemList.get(i).getOwner());
+                itm.write("\n");
+            }
+            itm.close();
+        } catch (Exception e) {
+            System.err.print(e);
+            System.exit(1);
+        }
+        System.out.println("Goodbye...");
+        try {
+            br.close();
+        } catch (Exception e) {
+            System.err.print(e);
+            System.exit(1);
+        }
+        System.exit(0);
     }
 }
