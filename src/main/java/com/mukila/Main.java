@@ -7,18 +7,7 @@ public class Main
     public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     public static void main(String[] args) {
         LinkedList<Member> memberList = new LinkedList<>();
-        Member aditya = new Member("Aditya", 20, "male");
-        Member murali = new Member("Murali", 52, "male");
-        memberList.add(aditya);
-        memberList.add(murali);
-
         LinkedList<Item> itemList = new LinkedList<>();
-        Item book1 = new Book("Rich Dad, Poor Dad", "Mukila", null);
-        Item magazine1 = new Magazine("Time", "New York Times", null);
-        Item dvd1 = new DVD("Blackhat", "Chris Hemswork", null);
-        itemList.add(book1);
-        itemList.add(magazine1);
-        itemList.add(dvd1);
 
         /* menu:
          * 1 add member
@@ -32,10 +21,22 @@ public class Main
             int input = printMenu();
             switch (input) {
                 case 1:
-                memberList.add(addMember());
+                Member member = addMember();
+                if (member != null)
+                {
+                    memberList.add(member);
+                } else {
+                    System.out.println("Invalid Input");
+                }
                 break;
                 case 2:
-                itemList.add(addItem());
+                Item item = addItem();
+                if (item != null)
+                {
+                    itemList.add(item);
+                } else {
+                    System.out.println("Invalid Input");
+                }
                 break;
                 case 3:
                 checkoutItem(itemList);
@@ -93,81 +94,38 @@ public class Main
             System.exit(1);
         }
         
-        Member member = new Member(name, age, gender);
+        Member member = null;
+        if (name != null && age != -1 && gender != null)
+        {
+            member = new Member(name, age, gender);
+        }
         return member;
     }
 
     public static Item addItem()
     {
-        System.out.println("b: Book");
-        System.out.println("m: Magazine");
-        System.out.println("d: DVD");
-        System.out.print("Choose a type of Item to add:\t");
-        String input = null;
-        
-        try
-        {
-            input = (br.readLine());
+        String title = null;
+        String type = null;
+        String creator = null;
+
+        try {
+            System.out.print("Title:\t");
+            title = (br.readLine());
+            System.out.print("Type:\t");
+            type = br.readLine();
+            System.out.print("Creator (Author, Director, Editor, etc.):\t");
+            creator = (br.readLine());
         } catch (Exception e) {
             System.err.print(e);
             System.exit(1);
         }
 
-        if (input.equalsIgnoreCase("b"))
+        Item item = null;
+        if (title != null && type != null && creator != null)
         {
-            String title = null;
-            String author = null;
-            
-            try {
-                System.out.print("Title:\t");
-                title = (br.readLine());
-                System.out.print("Author:\t");
-                author = (br.readLine());
-            } catch (Exception e) {
-                System.err.print(e);
-                System.exit(1);
-            }
-
-            Book book = new Book(title, author, null);
-            return book;
-        } else if (input.equalsIgnoreCase("m"))
-        {
-            String title = null;
-            String editor = null;
-            
-            try {
-                System.out.print("Title:\t");
-                title = (br.readLine());
-                System.out.print("Editor:\t");
-                editor = (br.readLine());
-            } catch (Exception e) {
-                System.err.print(e);
-                System.exit(1);
-            }
-
-            Magazine magazine = new Magazine(title, editor, null);
-            return magazine;
-        } else if (input.equalsIgnoreCase("d"))
-        {
-            String title = null;
-            String director = null;
-            
-            try {
-                System.out.print("Title:\t");
-                title = (br.readLine());
-                System.out.print("Director:\t");
-                director = (br.readLine());
-            } catch (Exception e) {
-                System.err.print(e);
-                System.exit(1);
-            }
-
-            DVD dvd = new DVD(title, director, null);
-            return dvd;
+            item = new Item(title, null, type, creator);
         }
-
-        System.out.println("Invalid Input: Input the letter \'b\', \'m\', or \'d\'");
-        return null;
+        return item;
     }
 
     public static void checkoutItem(LinkedList<Item> itemList)
@@ -253,6 +211,8 @@ public class Main
                 itm.write(itemList.get(i).getTitle());
                 itm.write("\n");
                 itm.write(itemList.get(i).getOwner());
+                itm.write("\n");
+                itm.write(itemList.get(i).getCreator());
                 itm.write("\n");
             }
             itm.close();
