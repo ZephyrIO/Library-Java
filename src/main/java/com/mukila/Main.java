@@ -230,7 +230,7 @@ public class Main
             {
                 mem.write(memberList.get(i).getName());
                 mem.write("\n");
-                mem.write(memberList.get(i).getAge());
+                mem.write(Integer.toString(memberList.get(i).getAge()));
                 mem.write("\n");
                 mem.write(memberList.get(i).getGender());
                 mem.write("\n");
