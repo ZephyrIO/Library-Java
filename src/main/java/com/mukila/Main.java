@@ -46,8 +46,10 @@ public class Main
                 returnItem(itemList);
                 break;
                 case 5:
+                listMembers(memberList);
                 break;
                 case 6:
+                listItems(itemList);
                 break;
                 case 7:
                 quit(memberList, itemList);
@@ -190,6 +192,34 @@ public class Main
             System.err.print(e);
             System.exit(1);
         }
+    }
+
+    public static void listMembers(LinkedList<Member> memberList)
+    {
+        System.out.print("Members: ");
+        for(int i = 0; i < memberList.size(); i++)
+        {
+            System.out.print(memberList.get(i).getName());
+            if(++i < memberList.size())
+            {
+                System.out.print(", ");
+            }
+        }
+        System.out.println();
+    }
+
+    public static void listItems(LinkedList<Item> itemList)
+    {
+        System.out.print("Items: ");
+        for(int i = 0; i < itemList.size(); i++)
+        {
+            System.out.print(itemList.get(i).getTitle());
+            if(++i < itemList.size())
+            {
+                System.out.print(", ");
+            }
+        }
+        System.out.println();
     }
 
     public static void quit(LinkedList<Member> memberList, LinkedList<Item> itemList)
