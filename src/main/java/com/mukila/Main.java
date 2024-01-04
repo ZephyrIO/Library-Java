@@ -14,8 +14,9 @@ public class Main
          * 2 add item
          * 3 checkout item
          * 4 return item
-         * 5 TODO
-         * 6 quit
+         * 5 list members
+         * 6 list items
+         * 7 quit
          */
         while (true) {
             int input = printMenu();
@@ -47,10 +48,12 @@ public class Main
                 case 5:
                 break;
                 case 6:
+                break;
+                case 7:
                 quit(memberList, itemList);
                 break;
                 default:
-                System.out.println("Invalid Input: Input an integer from 1 to 6.");
+                System.out.println("Invalid Input: Input an integer from 1 to 7.");
                 break;
             }
         }
@@ -62,8 +65,9 @@ public class Main
         System.out.println("2: Add Item");
         System.out.println("3: Checkout Item");
         System.out.println("4: Return Item");
-        System.out.println("5: null");
-        System.out.println("6: Quit");
+        System.out.println("5: List Members");
+        System.out.println("6: List Items");
+        System.out.println("7: Quit");
         int input = -1;
         System.out.print("Select an option:\t");
         try
