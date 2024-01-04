@@ -225,7 +225,7 @@ public class Main
     public static void quit(LinkedList<Member> memberList, LinkedList<Item> itemList)
     {
         try {
-            FileWriter mem = new FileWriter("Members.txt");
+            FileWriter mem = new FileWriter("Members.save");
             for (int i = 0; i < memberList.size(); i++)
             {
                 mem.write(memberList.get(i).getName());
@@ -237,7 +237,7 @@ public class Main
             }
             mem.close();
 
-            FileWriter itm = new FileWriter("Items.txt");
+            FileWriter itm = new FileWriter("Items.save");
             for (int i = 0; i < itemList.size(); i++)
             {
                 itm.write(itemList.get(i).getType());
