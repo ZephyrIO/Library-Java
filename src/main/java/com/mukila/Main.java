@@ -244,7 +244,12 @@ public class Main
                 itm.write("\n");
                 itm.write(itemList.get(i).getTitle());
                 itm.write("\n");
-                itm.write(itemList.get(i).getOwner());
+                if(itemList.get(i).getOwner() == null)
+                {
+                    itm.write("null");
+                } else {
+                    itm.write(itemList.get(i).getOwner());
+                }
                 itm.write("\n");
                 itm.write(itemList.get(i).getCreator());
                 itm.write("\n");
