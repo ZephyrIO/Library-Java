@@ -9,6 +9,52 @@ public class Main
         LinkedList<Member> memberList = new LinkedList<>();
         LinkedList<Item> itemList = new LinkedList<>();
 
+        try {
+            BufferedReader mr = new BufferedReader(new FileReader("Members.save"));
+            while (true)
+            {
+                String name = mr.readLine();
+
+                if(name == null)
+                {
+                    break;
+                }
+                
+                int age = Integer.parseInt(mr.readLine());
+                String gender = mr.readLine();
+
+                memberList.add(new Member(name, age, gender));
+            }
+            mr.close();
+
+            BufferedReader ir = new BufferedReader(new FileReader("Items.save"));
+            while (true)
+            {
+                String type = ir.readLine();
+
+                if(type == null)
+                {
+                    break;
+                }
+
+                String title = ir.readLine();
+                String owner = ir.readLine();
+                String creator = ir.readLine();
+
+                if (owner.equals("null"))
+                {
+                    owner = null;
+                }
+
+                itemList.add(new Item(title, owner, type, creator));
+            }
+            ir.close();
+        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
+            System.err.println(e);
+            System.exit(1);
+        }
+
         /* menu:
          * 1 add member
          * 2 add item
